@@ -2,9 +2,13 @@
  * @Author: Chengbotao
  * @Date: 2022-06-29 17:20:56
  */
-// import { AxiosInstance } from 'axios';
 
-const query: any = {
+import { AxiosInstance, AxiosRequestConfig } from 'axios';
+interface JDRequestConfig {
+  [key: string]: AxiosRequestConfig;
+}
+
+const totalQuery: JDRequestConfig = {
   TotalSteel: {
     // 总钢镚查询
     method: 'get',
@@ -39,36 +43,33 @@ const query: any = {
   },
 };
 
-module.exports = {
-  totalSteel($http: (arg0: any) => Promise<any>) {
-    return $http(query.TotalSteel).then((res: { data: { gbBalance: any } }) => {
-      return `账户钢镚: ${res.data.gbBalance}`;
-    });
-  },
-  totalCash($http: (arg0: any) => Promise<any>) {
-    return $http(query.TotalCash).then((res: { data: { totalBalance: any } }) => {
-      return `账户红包: ${res.data.totalBalance}`;
-    });
-  },
-  totalBean($http: (arg0: any) => Promise<any>) {
-    return $http(query.TotalBean).then(
-      (res: { data: { data: { assetInfo: { beanNum: any } } } }) => {
-        return `账户京豆: ${res.data.data.assetInfo.beanNum}`;
-      }
-    );
-  },
-  totalSubsidy($http: (arg0: any) => Promise<any>) {
-    return $http(query.TotalSubsidy).then(
-      (res: { data: { resultData: { data: { balance: any } } } }) => {
-        return `账户金贴: ${res.data.resultData.data.balance}`;
-      }
-    );
-  },
-  totalMoney($http: (arg0: any) => Promise<any>) {
-    return $http(query.TotalMoney).then(
-      (res: { data: { data: { result: { totalMoney: any } } } }) => {
-        return `账户现金: ${res.data.data.result.totalMoney}`;
-      }
-    );
-  },
-};
+export function totalSteel($http: AxiosInstance) {
+  return $http(totalQuery.TotalSteel).then((res) => {
+    const { data } = res;
+    return `账户钢镚: ${data.gbBalance}`;
+  });
+}
+export function totalCash($http: AxiosInstance) {
+  return $http(totalQuery.TotalCash).then((res) => {
+    const { data } = res;
+    return `账户红包: ${data.totalBalance}`;
+  });
+}
+export function totalBean($http: AxiosInstance) {
+  return $http(totalQuery.TotalBean).then((res) => {
+    const { data } = res;
+    return `账户京豆: ${data.data.assetInfo.beanNum}`;
+  });
+}
+export function totalSubsidy($http: AxiosInstance) {
+  return $http(totalQuery.TotalSubsidy).then((res) => {
+    const { data } = res;
+    return `账户金贴: ${data.resultData.data.balance}`;
+  });
+}
+export function totalMoney($http: AxiosInstance) {
+  return $http(totalQuery.TotalMoney).then((res) => {
+    const { data } = res;
+    return `账户现金: ${data.data.result.totalMoney}`;
+  });
+}

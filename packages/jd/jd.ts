@@ -3,9 +3,9 @@
  * @Date: 2022-06-06 16:17:56
  */
 
-const { totalBean, totalCash, totalMoney, totalSteel, totalSubsidy } = require('./query');
-const axios = require('axios').default;
-
+import axios from 'axios';
+import { totalBean, totalCash, totalMoney, totalSteel, totalSubsidy } from './query';
+import { getBean, getSubsidy, getSupermarket, getCash, getShake } from './getxxx';
 const $http = axios.create({
   headers: {
     'User-Agent': 'JD4iPhone/167169 (iPhone; iOS 13.4.1; Scale/3.00)',
@@ -16,7 +16,8 @@ const $http = axios.create({
   },
 });
 
-function queryTotal() {
+// 查询总数
+export function queryTotal() {
   return Promise.all([
     totalBean($http),
     totalCash($http),
@@ -32,4 +33,18 @@ function queryTotal() {
     });
 }
 
-queryTotal();
+export function getBenefits() {
+  return Promise.all([
+    getBean($http),
+    getSubsidy($http),
+    getSupermarket($http),
+    getCash($http),
+    getShake($http),
+  ])
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

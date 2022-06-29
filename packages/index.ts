@@ -3,7 +3,7 @@
  * @Date: 2022-06-07 17:45:04
  */
 
-export function test() {
-  const a = 1;
-  return a;
-}
+import { queryTotal, getBenefits } from './jd/jd';
+// 京东签到查询
+getBenefits();
+queryTotal();

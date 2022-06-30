@@ -4,6 +4,7 @@
  */
 
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
+
 interface JDRequestConfig {
   [key: string]: AxiosRequestConfig;
 }
@@ -43,33 +44,28 @@ const totalQuery: JDRequestConfig = {
   },
 };
 
-export function totalSteel($http: AxiosInstance) {
-  return $http(totalQuery.TotalSteel).then((res) => {
-    const { data } = res;
-    return `账户钢镚: ${data.gbBalance}`;
-  });
+export async function totalSteel($http: AxiosInstance) {
+  const res = await $http(totalQuery.TotalSteel);
+  const { data } = res;
+  return `账户钢镚: ${data.gbBalance}`;
 }
-export function totalCash($http: AxiosInstance) {
-  return $http(totalQuery.TotalCash).then((res) => {
-    const { data } = res;
-    return `账户红包: ${data.totalBalance}`;
-  });
+export async function totalCash($http: AxiosInstance) {
+  const res = await $http(totalQuery.TotalCash);
+  const { data } = res;
+  return `账户红包: ${data.totalBalance}`;
 }
-export function totalBean($http: AxiosInstance) {
-  return $http(totalQuery.TotalBean).then((res) => {
-    const { data } = res;
-    return `账户京豆: ${data.data.assetInfo.beanNum}`;
-  });
+export async function totalBean($http: AxiosInstance) {
+  const res = await $http(totalQuery.TotalBean);
+  const { data } = res;
+  return `账户京豆: ${data.data.assetInfo.beanNum}`;
 }
-export function totalSubsidy($http: AxiosInstance) {
-  return $http(totalQuery.TotalSubsidy).then((res) => {
-    const { data } = res;
-    return `账户金贴: ${data.resultData.data.balance}`;
-  });
+export async function totalSubsidy($http: AxiosInstance) {
+  const res = await $http(totalQuery.TotalSubsidy);
+  const { data } = res;
+  return `账户金贴: ${data.resultData.data.balance}`;
 }
-export function totalMoney($http: AxiosInstance) {
-  return $http(totalQuery.TotalMoney).then((res) => {
-    const { data } = res;
-    return `账户现金: ${data.data.result.totalMoney}`;
-  });
+export async function totalMoney($http: AxiosInstance) {
+  const res = await $http(totalQuery.TotalMoney);
+  const { data } = res;
+  return `账户现金: ${data.data.result.totalMoney}`;
 }

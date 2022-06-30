@@ -49,7 +49,7 @@ export async function getBean($http: AxiosInstance): Promise<string> {
     return `京东商城-京豆Cookie失效`;
   }
   if (data.data.status === '1') {
-    return `京东商城-京豆签到成功,明细: ${data.data.dailyAward.dailyAward.beanCount} 京豆 🐶`;
+    return `京东商城-京豆签到成功,明细: ${data.data.dailyAward.beanCount} 京豆 🐶`;
   }
   return `京东商城-京豆已签到`;
 }

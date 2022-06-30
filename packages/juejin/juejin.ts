@@ -94,7 +94,7 @@ async function queryCurPoint($http: AxiosInstance) {
   const res = await $http(Juejin.curPoint);
   const { data } = res;
   if (data.err_no === ERRNO.success) {
-    return `总矿石: ${data.data}`;
+    return `总矿石: ${data.data} 矿石`;
   }
   return `查询总矿石失败`;
 }
@@ -126,7 +126,6 @@ async function queryLotteryHistory($http: AxiosInstance) {
   // 查询五位幸运用户
   const res = await $http(Juejin.lotteryHistory);
   const { data } = res;
-  console.log(data);
   if (data.err_no === ERRNO.success) {
     return data.data.lotteries;
   }
@@ -189,7 +188,7 @@ async function beHappy($http: AxiosInstance) {
 
 async function freeDrawLottery($http: AxiosInstance) {
   const lottery = await queryLottery($http);
-  if (typeof lottery !== 'string' && lottery.freeCount === 0) {
+  if (typeof lottery !== 'string' && lottery.freeCount !== 0) {
     return await drawLottery($http);
   }
   return `免费抽奖失败`;

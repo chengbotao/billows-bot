@@ -4,7 +4,7 @@
  */
 
 import axios from 'axios';
-import { totalBean, totalCash, totalMoney, totalSteel, totalSubsidy } from './query';
+import { totalBean, totalMoney } from './query';
 import { getBean, getSubsidy, getSupermarket, getCash, getShake } from './getxxx';
 
 const $http = axios.create({
@@ -18,13 +18,7 @@ const $http = axios.create({
 // 查询总数
 async function queryTotal() {
   try {
-    const res = await Promise.all([
-      totalBean($http),
-      totalCash($http),
-      totalMoney($http),
-      totalSteel($http),
-      totalSubsidy($http),
-    ]);
+    const res = await Promise.all([totalBean($http), totalMoney($http)]);
     return res;
   } catch (err) {
     console.log(err);

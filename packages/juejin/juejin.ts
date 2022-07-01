@@ -164,6 +164,9 @@ async function dipLucky($http: AxiosInstance, lotteryHistoryId: string) {
   );
   const { data } = res;
   if (data.err_no === ERRNO.success) {
+    if (data.data.has_dip) {
+      return `今日已经沾过喜气`;
+    }
     return `沾沾喜气: ${data.data.dip_value} 幸运值`;
   }
   return `沾一沾失败`;
@@ -188,8 +191,11 @@ async function beHappy($http: AxiosInstance) {
 
 async function freeDrawLottery($http: AxiosInstance) {
   const lottery = await queryLottery($http);
-  if (typeof lottery !== 'string' && lottery.freeCount !== 0) {
-    return await drawLottery($http);
+  if (typeof lottery !== 'string') {
+    if (lottery.freeCount !== 0) {
+      return await drawLottery($http);
+    }
+    return `今天已免费抽奖过`;
   }
   return `免费抽奖失败`;
 }

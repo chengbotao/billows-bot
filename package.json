@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run clean && rollup -c",
+    "bot": "node dist/billows-bot.js",
     "clean": "rimraf dist",
     "commit": "npx git-cz",
     "fix": "npx eslint packages/**/*.ts --fix "
@@ -48,6 +49,8 @@
     }
   },
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "fast-astar": "^1.0.6",
+    "juejin-helper": "^1.5.2"
   }
 }

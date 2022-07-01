@@ -15,7 +15,7 @@ import typescript from '@rollup/plugin-typescript';
 
 const { version } = pkg;
 const outputConf = {
-  banner: `/* Billows version ${version} */`,
+  banner: `/* BillowsBot version ${version} */`,
   footer: `/* Follow me on GitHub! @chengbotao */`,
 };
 
@@ -23,12 +23,12 @@ export default {
   input: 'packages/index.ts',
   output: [
     {
-      file: resolve(__dirname, 'dist', 'billows.esm.js'),
+      file: resolve(__dirname, 'dist', 'billows-bot.esm.js'),
       format: 'esm',
       ...outputConf,
     },
     {
-      file: resolve(__dirname, 'dist', 'billows.js'),
+      file: resolve(__dirname, 'dist', 'billows-bot.js'),
       format: 'umd',
       name: 'billows',
       ...outputConf,

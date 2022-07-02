@@ -192,6 +192,8 @@ async function beHappy($http: AxiosInstance) {
 async function freeDrawLottery($http: AxiosInstance) {
   const lottery = await queryLottery($http);
   if (typeof lottery !== 'string') {
+    console.log(lottery,"lottery");
+    
     if (lottery.freeCount !== 0) {
       return await drawLottery($http);
     }

@@ -47,7 +47,7 @@ export default {
     eslint({
       // fix: true,
       include: ['packages/**/*.ts'],
-      exclude: ['node_modules/**'],
+      exclude: ['node_modules/**', 'dist/**'],
     }),
     // babel({
     //   babelHelpers: 'bundled',

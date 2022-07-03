@@ -5,7 +5,7 @@
 
 import axios from 'axios';
 import { totalBean, totalMoney } from './query';
-import { getBean, getSubsidy, getSupermarket, getCash, getShake } from './getxxx';
+import { getBean, getCash } from './getxxx';
 
 const $http = axios.create({
   headers: {
@@ -29,10 +29,7 @@ async function getBenefits() {
   try {
     const res = await Promise.all([
       getBean($http),
-      getSubsidy($http),
-      getSupermarket($http),
       getCash($http),
-      getShake($http),
     ]);
     return res;
   } catch (err) {

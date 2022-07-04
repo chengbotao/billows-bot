@@ -192,8 +192,6 @@ async function beHappy($http: AxiosInstance) {
 async function freeDrawLottery($http: AxiosInstance) {
   const lottery = await queryLottery($http);
   if (typeof lottery !== 'string') {
-    console.log(lottery,"lottery");
-    
     if (lottery.freeCount !== 0) {
       return await drawLottery($http);
     }
@@ -203,13 +201,9 @@ async function freeDrawLottery($http: AxiosInstance) {
 }
 
 export async function jueJin() {
-  const res = await Promise.all([
-    signIn($http),
-    beHappy($http),
-    freeDrawLottery($http),
-    queryMyLucky($http),
-    queryCounts($http),
-    queryCurPoint($http),
-  ]);
-  console.log(res);
+  const signInStatus = await signIn($http);
+  const beHappyStatus = await beHappy($http);
+  const freeLottery = await freeDrawLottery($http);
+  const query = await Promise.all([queryMyLucky($http), queryCounts($http), queryCurPoint($http)]);
+  console.log([signInStatus, beHappyStatus, freeLottery, ...query]);
 }

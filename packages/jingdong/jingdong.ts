@@ -27,10 +27,7 @@ async function queryTotal() {
 
 async function getBenefits() {
   try {
-    const res = await Promise.all([
-      getBean($http),
-      getCash($http),
-    ]);
+    const res = await Promise.all([getBean($http), getCash($http)]);
     return res;
   } catch (err) {
     console.log(err);
@@ -38,6 +35,8 @@ async function getBenefits() {
 }
 
 export async function jingDong() {
-  const res = await Promise.all([getBenefits(), queryTotal()]);
-  console.log(res.flat());
+  const benefits = (await getBenefits()) as [string, string];
+  const totalQuery = (await queryTotal()) as [string, string];
+
+  console.log([...benefits, ...totalQuery]);
 }
